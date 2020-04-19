@@ -7,6 +7,7 @@ package MOInstance_QAPs;
 import general.*;
 import java.util.*;
 import java.io.*;
+import Util.Math.PermutationGenerator;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class QAPs extends ProblemInstance implements java.io.Serializable{
@@ -16,6 +17,7 @@ public class QAPs extends ProblemInstance implements java.io.Serializable{
         
     public static int type_QAPs = 0;
 
+    PermutationGenerator genP;
     private double correlation;
     public int max_flow;
     public int max_distance;
@@ -48,6 +50,7 @@ public class QAPs extends ProblemInstance implements java.io.Serializable{
             }
         }
 
+        genP = new PermutationGenerator(numberOfFacilities);
     }
 	
 	public QAPs(double correlation, int max_flow, int max_distance,int[][] a, int[][][] b){
@@ -144,7 +147,7 @@ public class QAPs extends ProblemInstance implements java.io.Serializable{
     @Override
     public Solution_QAPs init(Variator var){//, PerturbatorStrategies e){
             //generate another random solution
-            Integer[] perm = ArrayUtils.toObject(Permutation.randomizePermutation(numberOfFacilities));
+            Integer[] perm = ArrayUtils.toObject(genP.getNext());
             Long[] obj = (Long[]) computeSolution(perm);
             Solution_QAPs tempS = new Solution_QAPs(obj,perm); 
             var.updateNrSwaps(this.numberOfFacilities);

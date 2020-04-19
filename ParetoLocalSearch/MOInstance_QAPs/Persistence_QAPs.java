@@ -4,16 +4,18 @@
 
 package MOInstance_QAPs;
 
-import knapsack_optimal.Persistence;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import general.*;
 
-public class Persistence_QAPs extends Persistence implements Serializable{
+public class Persistence_QAPs implements Serializable{
 
     static final long serialVersionUID = 101L; 
 
+    ArrayList types = new ArrayList();
+    ArrayList al = new ArrayList();
+    
     Persistence_QAPs(){
         types = new ArrayList<>();
         al = new ArrayList<>();
